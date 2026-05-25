@@ -511,8 +511,15 @@
         }
 
         // ========== テスト終了 ==========
-        document.getElementById('exitBtn').addEventListener('click', function() {
-            if (confirm('テストを終了しますか？')) {
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            const section = testData[currentSection];
+            const maxIndex = section.questions.length - 1;
+            
+            if (currentQuestionIndex < maxIndex) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else if (currentQuestionIndex === maxIndex) {
+                // 最後の問題の場合は結果画面へ
                 testEndTime = new Date();
                 showResults();
             }
